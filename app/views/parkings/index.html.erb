@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Parkings</h1>
+
+<div id="parkings">
+  <% @parkings.each do |parking| %>
+    <%# render parking %>
+    <p>
+      <%= parking %>
+      <%# link_to "Show this parking", parking %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New parking", new_parking_path %>
