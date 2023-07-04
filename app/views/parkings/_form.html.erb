@@ -1,17 +1,28 @@
-<%= form_with(model: parking) do |form| %>
-  <% if parking.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(parking.errors.count, "error") %> prohibited this parking from being saved:</h2>
-
-      <ul>
-        <% parking.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.submit %>
+<%= form_with(url: '/parkings', methods: define_form_method) do |form| %>
+  <div class="form-group">
+    <%= form.label :name, "Nome do Estacionamento" %>
+    <%= form.text_field :name, class: "form-control", value: @parking[:name] %>
   </div>
+
+  <div class="form-group">
+    <%= form.label :address, "Endereço" %>
+    <%= form.text_field :address, class: "form-control", value: @parking[:address] %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :opening_time, "Horário de Abertura" %>
+    <%= form.time_field :opening_time, class: "form-control", value: @parking[:opening_time] %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :closing_time, "Horário de Fechamento" %>
+    <%= form.time_field :closing_time, class: "form-control", value: @parking[:closing_time] %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :cost_per_hour, "Custo por Hora" %>
+    <%= form.number_field :cost_per_hour, class: "form-control", value: @parking[:cost_per_hour] %>
+  </div>
+
+  <%= form.submit "Salvar", class: "btn btn-primary" %>
 <% end %>

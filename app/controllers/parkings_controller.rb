@@ -17,6 +17,7 @@ class ParkingsController < ApplicationController
 
   # GET /parkings/new
   def new
+    @parking = {}
   end
 
   # GET /parkings/1/edit
@@ -25,27 +26,31 @@ class ParkingsController < ApplicationController
 
   # POST /parkings
   def create
-    @parking = Parking.new(parking_params)
+    body = {
+      'parking' => {
+        'name' => params[:name],
+        'address' => params[:address],
+        'opening_time' => params[:opening_time],
+        'closing_time' => params[:closing_time],
+        'cost_per_hour' => params[:cost_per_hour]
+      }
+    }
 
-    if @parking.save
-      redirect_to @parking, notice: "Parking was successfully created."
+    response = make_api_request(:post, true, "parkings", body)
+    created = response.code == '201'
+
+    if created
+      redirect_to parkings_path
     else
-      render :new, status: :unprocessable_entity
+      flash[:alert] = "Erro ao cadastrar estacionamento."
     end
   end
 
   # PATCH/PUT /parkings/1
   def update
-    if @parking.update(parking_params)
-      redirect_to @parking, notice: "Parking was successfully updated."
-    else
-      render :edit, status: :unprocessable_entity
-    end
   end
 
   # DELETE /parkings/1
   def destroy
-    @parking.destroy
-    redirect_to parkings_url, notice: "Parking was successfully destroyed.", status: :see_other
   end
 end

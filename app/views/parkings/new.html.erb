@@ -1,9 +1,9 @@
-<h1>New parking</h1>
+<div class="page-title mb-3">
+  <h1>New parking</h1>
 
-<%= render "form", parking: @parking %>
-
-<br>
-
-<div>
-  <%= link_to "Back to parkings", parkings_path %>
+  <%= link_to "Back to parkings", parkings_path, class: "btn btn-warning" %>
 </div>
+
+<%= render layout: 'layouts/shared/card' do %>
+  <%= render "form" %>
+<% end %>

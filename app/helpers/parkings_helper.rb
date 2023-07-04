@@ -12,4 +12,13 @@ module ParkingsHelper
     date = Date.parse(date_string)
     date.strftime("%d/%m/%Y")
   end
+
+  def define_form_method
+    case action_name 
+    when 'new'
+      'post'
+    when 'edit'
+      'put'
+    end
+  end
 end
