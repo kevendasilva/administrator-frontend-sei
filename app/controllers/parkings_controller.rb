@@ -6,7 +6,7 @@ class ParkingsController < ApplicationController
 
   # GET /parkings
   def index
-    response = make_api_request(:get, 'parkings')
+    response = make_api_request(:get, true, 'parkings')
     @parkings = JSON.parse(response.body, symbolize_names: true)
   end
 
