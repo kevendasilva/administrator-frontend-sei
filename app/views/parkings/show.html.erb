@@ -1,10 +1,18 @@
-<p style="color: green"><%= notice %></p>
+<div class="page-title mb-3">
+  <h3><%= @parking[:name] %></h3>
 
-<%= render @parking %>
-
-<div>
-  <%= link_to "Edit this parking", edit_parking_path(@parking) %> |
-  <%= link_to "Back to parkings", parkings_path %>
-
-  <%= button_to "Destroy this parking", @parking, method: :delete %>
+  <%= link_to "Voltar", :back, class: "btn btn-warning" %>
 </div>
+
+<%= render layout: 'layouts/shared/card' do %>
+  <p class="mb-0"><strong>Endereço:</strong> <%= @parking[:address] %></p>
+  <p class="mb-0"><strong>Horário de abertura:</strong> <%= format_time(@parking[:opening_time]) %></p>
+  <p class="mb-0"><strong>Horário de fechamento:</strong> <%= format_time(@parking[:closing_time]) %></p>
+  <p class="mb-0"><strong>Custo por hora:</strong> <%= format_cost(@parking[:cost_per_hour]) %></p>
+  <p class="mb-0"><strong>Criado em:</strong> <%= format_date(@parking[:created_at]) %></p>
+  <p class="mb-0"><strong>Última edição em:</strong> <%= format_date(@parking[:updated_at]) %></p>
+  
+  <%# render partial: 'layouts/shared/resource-actions',
+             locals: {
+             } %>
+<% end %>
