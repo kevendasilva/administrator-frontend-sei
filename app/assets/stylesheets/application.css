@@ -38,3 +38,7 @@ html, body {
   height: 48px;
   width: auto;
 }
+
+.active {
+  background: whitesmoke;
+}
