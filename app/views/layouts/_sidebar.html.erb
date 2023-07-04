@@ -1,11 +1,12 @@
 <ul class="nav flex-column py-5">
   <li class="nav-item">
-    <a class="nav-link active" href="#">Opção 1</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Opção 2</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Opção 3</a>
+    <a id="parkings" class="nav-link" href="/parkings">Estacionamentos</a>
   </li>
 </ul>
+
+<script type="text/javascript">
+  window.onload = () => {
+    let navLink = document.getElementById("<%= controller_name %>");
+    navLink.classList.add('active');
+  };
+</script>
