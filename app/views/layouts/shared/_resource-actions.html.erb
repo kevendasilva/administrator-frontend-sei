@@ -1,0 +1,13 @@
+<div class="btn-group mt-3" role="group" aria-label="Ações">
+  <% if defined?(show_link) %>
+    <%= link_to "Ver", show_link, class: "btn btn-primary" %>
+  <% end %>
+  
+  <% if defined?(dit_link) %>
+    <%= link_to "Editar", edit_link, class: "btn btn-warning" %>
+  <% end %>
+  
+  <% if defined?(delete_link) %>
+    <%= link_to "Apagar", delete_link, class: "btn btn-danger", method: :delete, data: { confirm: "Tem certeza que deseja apagar?" } %>
+  <% end %>
+</div>
