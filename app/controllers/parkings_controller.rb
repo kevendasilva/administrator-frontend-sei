@@ -11,7 +11,7 @@ class ParkingsController < ApplicationController
 
   # GET /parkings/1
   def show
-    response = make_api_request(:get, true, "parkings/#{params[:id]}")
+    response = make_api_request(:get, true, "parkings/#{parking_params[:id]}")
     @parking = JSON.parse(response.body, symbolize_names: true)
   end
 
@@ -22,19 +22,13 @@ class ParkingsController < ApplicationController
 
   # GET /parkings/1/edit
   def edit
+    response = make_api_request(:get, true, "parkings/#{parking_params[:id]}")
+    @parking = JSON.parse(response.body, symbolize_names: true)
   end
 
   # POST /parkings
   def create
-    body = {
-      'parking' => {
-        'name' => params[:name],
-        'address' => params[:address],
-        'opening_time' => params[:opening_time],
-        'closing_time' => params[:closing_time],
-        'cost_per_hour' => params[:cost_per_hour]
-      }
-    }
+    body = { 'parking' => parking_params }
 
     response = make_api_request(:post, true, "parkings", body)
     created = response.code == '201'
@@ -48,9 +42,27 @@ class ParkingsController < ApplicationController
 
   # PATCH/PUT /parkings/1
   def update
+    params = parking_params
+    params.delete(:id)
+    body = { 'parking' => params }
+
+    response = make_api_request(:put, true, "parkings/#{parking_params[:id]}", body)
+    updated = response.code == '200'
+
+    if updated
+      redirect_to parkings_path
+    else
+      flash[:alert] = "Erro ao atualizar estacionamento."
+    end
   end
 
   # DELETE /parkings/1
   def destroy
+  end
+
+  private
+
+  def parking_params
+    params.permit(:id, :name, :address, :opening_time, :closing_time, :cost_per_hour)
   end
 end

@@ -1,4 +1,8 @@
-<%= form_with(url: '/parkings', methods: define_form_method) do |form| %>
+<%= form_with(url: "/parkings/#{@parking[:id]}", method: :post, local: true, authenticity_token: true) do |form| %>
+  <% if action_name == 'edit' %>
+    <%= hidden_field_tag "_method", "PUT" %>
+  <% end %>
+
   <div class="form-group">
     <%= form.label :name, "Nome do Estacionamento" %>
     <%= form.text_field :name, class: "form-control", value: @parking[:name] %>
@@ -11,12 +15,12 @@
 
   <div class="form-group">
     <%= form.label :opening_time, "Horário de Abertura" %>
-    <%= form.time_field :opening_time, class: "form-control", value: @parking[:opening_time] %>
+    <%= form.time_field :opening_time, class: "form-control", value: format_time(@parking[:opening_time]) %>
   </div>
 
   <div class="form-group">
     <%= form.label :closing_time, "Horário de Fechamento" %>
-    <%= form.time_field :closing_time, class: "form-control", value: @parking[:closing_time] %>
+    <%= form.time_field :closing_time, class: "form-control", value: format_time(@parking[:closing_time]) %>
   </div>
 
   <div class="form-group">
