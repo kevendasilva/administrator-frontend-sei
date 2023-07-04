@@ -1,15 +1,11 @@
-<p style="color: green"><%= notice %></p>
+<div class="page-title mb-3">
+  <h1>Estacionamentos</h1> 
 
-<h1>Parkings</h1>
+  <%= link_to "Adicionar", new_parking_path, class: 'btn btn-success' %>
+</div>
 
 <div id="parkings">
   <% @parkings.each do |parking| %>
-    <%# render parking %>
-    <p>
-      <%= parking %>
-      <%# link_to "Show this parking", parking %>
-    </p>
+    <%= render 'parkings/parking', parking: parking %>
   <% end %>
 </div>
-
-<%= link_to "New parking", new_parking_path %>

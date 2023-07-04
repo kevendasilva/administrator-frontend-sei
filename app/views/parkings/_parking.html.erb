@@ -1,2 +1,7 @@
-<div id="<%= dom_id parking %>">
-</div>
+<%= render layout: 'layouts/shared/card' do %>
+  <h3><%= parking[:name] %></h3>
+  <p class="mb-0"><strong>Endereço:</strong> <%= parking[:address] %></p>
+  <p class="mb-0"><strong>Horário de abertura:</strong> <%= format_time(parking[:opening_time]) %></p>
+  <p class="mb-0"><strong>Horário de fechamento:</strong> <%= format_time(parking[:closing_time]) %></p>
+  <p class="mb-0"><strong>Custo por hora:</strong> <%= format_cost(parking[:cost_per_hour]) %></p>
+<% end %>
