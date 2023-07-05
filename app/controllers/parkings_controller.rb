@@ -58,6 +58,15 @@ class ParkingsController < ApplicationController
 
   # DELETE /parkings/1
   def destroy
+    response = make_api_request(:delete, true, "parkings/#{parking_params[:id]}")
+    deleted = response.code == '200'
+
+    if deleted
+      flash[:notice] = "Estacionamento removido com sucesso."
+      redirect_to parkings_path
+    else
+      flash[:alert] = "Erro ao deletar estacionamento."
+    end
   end
 
   private
