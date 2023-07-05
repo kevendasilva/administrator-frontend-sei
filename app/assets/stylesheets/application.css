@@ -94,3 +94,9 @@ html, body {
   align-items: center;
   justify-content: space-between;
 }
+
+.welcome-banner {
+  height: auto;
+  margin-bottom: 24px;
+  width: 480px;
+}
