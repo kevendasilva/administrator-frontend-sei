@@ -5,6 +5,8 @@ class ParkingsController < ApplicationController
 
   # GET /parkings
   def index
+    @title = "Estacionamentos - Dashboard Administrador"
+
     response = make_api_request(:get, true, 'parkings')
     @parkings = JSON.parse(response.body, symbolize_names: true)
   end
@@ -13,10 +15,14 @@ class ParkingsController < ApplicationController
   def show
     response = make_api_request(:get, true, "parkings/#{parking_params[:id]}")
     @parking = JSON.parse(response.body, symbolize_names: true)
+    
+    @title = "Estacionamento #{@parking[:name]} - Dashboard Administrador"
   end
 
   # GET /parkings/new
   def new
+    @title = "Adicionar novo estacionamento - Dashboard Administrador"
+
     @parking = {}
   end
 
@@ -24,6 +30,8 @@ class ParkingsController < ApplicationController
   def edit
     response = make_api_request(:get, true, "parkings/#{parking_params[:id]}")
     @parking = JSON.parse(response.body, symbolize_names: true)
+
+    @title = "Editando estacionamento #{@parking[:name]} - Dashboard Administrador"
   end
 
   # POST /parkings
@@ -34,6 +42,7 @@ class ParkingsController < ApplicationController
     created = response.code == '201'
 
     if created
+      flash[:notice] = "Estacionamento criado com sucesso."
       redirect_to parkings_path
     else
       flash[:alert] = "Erro ao cadastrar estacionamento."
@@ -50,6 +59,7 @@ class ParkingsController < ApplicationController
     updated = response.code == '200'
 
     if updated
+      flash[:notice] = "Estacionamento atualizado com sucesso."
       redirect_to parkings_path
     else
       flash[:alert] = "Erro ao atualizar estacionamento."

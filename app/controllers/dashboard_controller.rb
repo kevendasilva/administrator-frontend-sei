@@ -3,6 +3,6 @@ class DashboardController < ApplicationController
   include ApplicationHelper
 
   def index
-    @response = make_api_request(:get, true, 'parkings')
+    @title = "Página inicial - Dashboard Administrador"
   end
 end

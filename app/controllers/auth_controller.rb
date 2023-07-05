@@ -2,6 +2,8 @@ class AuthController < ApplicationController
   include ApplicationHelper
 
   def index
+    @title = "Página de login - Dashboard Administrador"
+
     response = make_api_request(:get, true, 'current_administrator')    
     valid = response.code == '200'
 
@@ -13,15 +15,13 @@ class AuthController < ApplicationController
   end
 
   def create
-    email = params[:email]
-    password = params[:password]
+    params = new_login_params
+    params.delete(:authenticity_token)
 
-    body = { 'administrator' => { 'email' => email, 'password' => password } }
+    body = { 'administrator' => params }
 
     response = make_api_request(:post, false, 'login', body)
     success = response.code == '200'
-
-    puts response.body
 
     if success
       cookies[:auth_token] = response.header['Authorization']
