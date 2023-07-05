@@ -1,11 +1,18 @@
 <div class="page-title mb-3">
   <h1>Estacionamentos</h1> 
 
-  <%= link_to "Adicionar", new_parking_path, class: 'btn btn-success' %>
+  <%= link_to "Adicionar", new_parking_path, class: 'btn secondary-background' %>
 </div>
 
 <div id="parkings">
-  <% @parkings.each do |parking| %>
-    <%= render 'parkings/parking', parking: parking %>
+  <% if not @parkings.empty? %>
+    <% @parkings.each do |parking| %>
+      <%= render 'parkings/parking', parking: parking %>
+    <% end %>
+
+  <% else %>
+    <%= render layout: 'layouts/shared/card' do %>
+      <p class="p-3">Nenhum estacionamento foi encontrado.</p>
+    <% end %>
   <% end %>
 </div>

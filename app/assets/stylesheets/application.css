@@ -60,21 +60,37 @@ html, body {
 }
 
 .primary-background {
-  background: #BB86FC;
+  background: #BB86FC !important;
+  color: white !important;
+}
+
+.primary-variant-background {
+  background: #3700B3 !important;
+  color: white !important;
 }
 
 .secondary-background {
-  background: #03DAC6;
+  background: #03DAC6 !important;
+  color: white !important;
 }
 
 .success-background {
-  background: #1FD1A4;
+  background: #1FD1A4 !important;
+  color: white !important;
 }
 
 .danger-background {
-  background: #CF6679
+  background: #CF6679 !important;
+  color: white !important;
 }
 
 .dark-background {
-  background: #121212;
+  background: #121212 !important;
+  color: white !important;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
