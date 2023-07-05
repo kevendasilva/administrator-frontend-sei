@@ -39,6 +39,42 @@ html, body {
   width: auto;
 }
 
+.nav-link {
+  fill: white;
+  color: white !important;
+}
+
 .active {
   background: whitesmoke;
+  color: #121212 !important;
+}
+
+.icon {
+  height: 18px;
+  margin-right: 12px;
+  width: auto;
+}
+
+.sidebar {
+  z-index: 9999;
+}
+
+.primary-background {
+  background: #BB86FC;
+}
+
+.secondary-background {
+  background: #03DAC6;
+}
+
+.success-background {
+  background: #1FD1A4;
+}
+
+.danger-background {
+  background: #CF6679
+}
+
+.dark-background {
+  background: #121212;
 }
