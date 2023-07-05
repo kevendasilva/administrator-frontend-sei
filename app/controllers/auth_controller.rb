@@ -26,12 +26,12 @@ class AuthController < ApplicationController
     if success
       cookies[:auth_token] = response.header['Authorization']
 
-      flash[:notice] = 'Login successful'
+      flash[:notice] = 'Login realizado com sucesso.'
       redirect_to root_path
     else
       message = response.body
 
-      flash[:alert] = "Login failed: #{message}"
+      flash[:alert] = "Login falhou: #{message}"
       redirect_to root_path
     end
   end
