@@ -1,0 +1,39 @@
+<div class="page-title mb-3">
+  <h1>Vagas</h1> 
+
+  <% if @current_parking %>
+    <%= link_to "Adicionar", "/vacancies/new?parking_id=#{@current_parking[:id]}", class: 'btn secondary-background' %>
+  <% end %>
+</div>
+
+<%= select_tag 'parking_dropdown', options_for_select(@parkings.map { |parking| [parking[:name], parking[:id]] }), prompt: 'Selecione um estacionamento', class: 'form-control mb-3' %>
+
+<% if @current_parking %>
+  <h4 class="mb-3">Vagas de: <%= @current_parking[:name] %></h4>
+<% end %>
+
+<div id="vacancies">
+  <% if not @vacancies.empty? %>
+    <div class="row">
+      <% @vacancies.each do |vacancy| %>
+        <div class="col-4">
+          <%= render 'vacancies/vacancy', vacancy: vacancy %>
+        </div>
+      <% end %>
+    </div>
+
+  <% else %>
+    <%= render layout: 'layouts/shared/card' do %>
+      <p class="mb-0 p-3">Nenhuma vaga foi encontrado.</p>
+    <% end %>
+  <% end %>
+</div>
+
+<script>
+  document.getElementById('parking_dropdown').addEventListener('change', function() {
+    var selectedParkingId = this.value;
+    if (selectedParkingId) {
+      window.location.href = '/vacancies?parking_id=' + selectedParkingId;
+    }
+  });
+</script>

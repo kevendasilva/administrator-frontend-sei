@@ -1,0 +1,10 @@
+<%= render layout: 'layouts/shared/card' do %>
+  <p class="mb-0"><strong>Código:</strong> <%= vacancy[:code] %></p>
+  <p class="mb-0"><strong>Tipo:</strong> <%= vacancy[:kind] %></p>
+
+  <%= render partial: 'layouts/shared/resource-actions',
+             locals: {
+               edit_link: "/vacancies/#{vacancy[:id]}/edit?parking_id=#{vacancy[:parking_id]}",
+               delete_link: "/vacancies/#{vacancy[:id]}?parking_id=#{vacancy[:parking_id]}"
+             } %>
+<% end %>
